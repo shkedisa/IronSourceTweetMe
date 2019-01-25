@@ -7,16 +7,20 @@ let app = express();
 app.use(bodyParser.json());
 
 let client = new Twitter({ //TODO make the credentials safe? for example: "consumer_key: process.env.TWITTER_CONSUMER_KEY"
-    consumer_key: 'KcTL48ZDltgRfFUwInMXFoXRB',
-    consumer_secret: 'qVXshbyNvLvLeBg6Eejpm8xZ27TLou1rNnvAxH9FNDJR2AIPBc',
-    access_token_key: '936957227163930625-ccrG2wOxsCaAb3fI97A0xq5C2pOk9j6',
-    access_token_secret: 'KLnF0sUWAk2SBk5ZmAuJ3PQl5B4DN5u5CTXXorRSbMdEM'
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,//'KcTL48ZDltgRfFUwInMXFoXRB',
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,//'qVXshbyNvLvLeBg6Eejpm8xZ27TLou1rNnvAxH9FNDJR2AIPBc',
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,//'936957227163930625-ccrG2wOxsCaAb3fI97A0xq5C2pOk9j6',
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET//'KLnF0sUWAk2SBk5ZmAuJ3PQl5B4DN5u5CTXXorRSbMdEM'
     //,app_id: '16084074'
 });
 
 const port = process.env.PORT || 8081;
 app.listen(port, function () {
     console.log('app listening on port %s', port);
+    console.log(process.env.TWITTER_CONSUMER_KEY)
+    console.log(process.env.TWITTER_CONSUMER_SECRET)
+    console.log(process.env.TWITTER_ACCESS_TOKEN_KEY)
+    console.log(process.env.TWITTER_ACCESS_TOKEN_SECRET)
 });
 
 let maxNumberOfResults = 100;
@@ -63,6 +67,7 @@ app.get('/tweets', function (req, res) {
             },
             function (error, tweets, response) {
                 if (error) {
+                    console.log(error)
                     sendError(res, 500, "Error from Twitter");
                 } else {
                     if (fields === undefined) {
