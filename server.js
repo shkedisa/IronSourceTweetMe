@@ -14,7 +14,7 @@ let client = new Twitter({ //TODO make the credentials safe? for example: "consu
     //,app_id: '16084074'
 });
 
-let port = 8081;
+const PORT = process.env.PORT || 8081;
 app.listen(port, function () {
     console.log('app listening on port %s', port);
 });
