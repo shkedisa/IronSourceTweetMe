@@ -26,7 +26,8 @@ function performWithValidation(validationConstrains, success, failure) {
     validationConstrains.forEach(function (validations) {
             if (!validations[1](validations[0])) {
                 failure();
-                break;
+                allValidationsSucceeded = false;
+                return;
             }
         }
     );
