@@ -46,5 +46,5 @@ app.get('/userTimeline', function (req, res) {
 
 
 app.get('/', function (req, res) {
-    res.send('Welcome!');
+    res.send('Welcome To TweetMe!');
 });
