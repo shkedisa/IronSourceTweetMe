@@ -1,9 +1,13 @@
 # IronSourceTweetMe
 
+<br/>
+
 **Description**:
 
 This is a service that integrates with Twitter API and exposes a REST API to perform multiple operations.
 The service serves at https://agile-woodland-55532.herokuapp.com
+
+<br/>
 
 **Endpoints**:
 
@@ -18,6 +22,7 @@ The service serves at https://agile-woodland-55532.herokuapp.com
         
     Request for example: `https://agile-woodland-55532.herokuapp.com/tweets?query=dog&count=5&fields=full_text,lang`
     
+<br/>
 
 2. `/tweet`: `Http POST` request, posts a new tweet at https://twitter.com/ShkediSapir
 * *Body Structure*:
@@ -28,7 +33,8 @@ The service serves at https://agile-woodland-55532.herokuapp.com
         
         Note: The text must be different at each /tweet request.
          
-    
+<br/>
+
 3. `/followers`: `Http GET` request, returns users followers IDs.
 * *Params*:
 
@@ -36,6 +42,7 @@ The service serves at https://agile-woodland-55532.herokuapp.com
         
     Request for example: `https://agile-woodland-55532.herokuapp.com/followers?username=bengurionu`
     
+<br/>
 
 4. `/userTimeline`: `Http GET` request, returns users timeline tweets.
 * *Required* Params:
