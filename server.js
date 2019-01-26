@@ -12,13 +12,21 @@ app.listen(PORT, function () {
     console.log("app listening on port " + PORT);
 });
 
+app.get('/tweets', function (req, res) {
+    let query = req.query.query;
+    let count = req.query.count || tweeterDriver.MAX_NUMBER_OF_RESULTS;
+    let fields = req.query.fields;
+    validation.performWithValidation([[query, validation.validateNonEmptyString, validation.invalidString(validation.QUERY)], [count, validation.validateIsPositiveNumber, validation.INVALID_COUNT]],
+        () => tweeterDriver.getTweets(res, query, count, fields),
+        (errorMsg) => validation.sendValidationError(res, errorMsg));
+});
+
 app.post('/tweet', function (req, res) {
     let text = req.body.text;
     validation.performWithValidation([[text, validation.validateNonEmptyString, validation.invalidString(validation.TEXT)]],
         () => tweeterDriver.postTweet(res, text),
         (errorMsg) => validation.sendValidationError(res, errorMsg));
 });
-
 
 app.get('/followers', function (req, res) {
     let username = req.query.username;
@@ -39,13 +47,4 @@ app.get('/userTimeline', function (req, res) {
 
 app.get('/', function (req, res) {
     res.send('Welcome!');
-});
-
-app.get('/tweets', function (req, res) {
-    let query = req.query.query;
-    let count = req.query.count || tweeterDriver.MAX_NUMBER_OF_RESULTS;
-    let fields = req.query.fields;
-    validation.performWithValidation([[query, validation.validateNonEmptyString, validation.invalidString(validation.QUERY)], [count, validation.validateIsPositiveNumber, validation.INVALID_COUNT]],
-        () => tweeterDriver.getTweets(res, query, count, fields),
-        (errorMsg) => validation.sendValidationError(res, errorMsg));
 });
