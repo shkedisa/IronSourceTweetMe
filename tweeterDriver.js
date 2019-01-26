@@ -18,7 +18,6 @@ exports.getTweets = function(res, query, count, fields) {
         },
         function (error, tweets, response) {
             if (error) {
-                console.log(error);
                 validation.sendTwitterError(res);
             } else {
                 filterFields(tweets, fields, res);
@@ -40,7 +39,6 @@ exports.getFollowers = function(res, username) {
     client.get('followers/ids', {screen_name: username},
         function (error, userFollowers, response) {
             if (error) {
-                console.log(error);
                 validation.sendTwitterError(res);
             } else {
                 res.send(userFollowers);
@@ -55,7 +53,6 @@ exports.getUserTimeline = function(res, username, count) {
         },
         function (error, tweets, response) {
             if (error) {
-                console.log(error);
                 validation.sendTwitterError(res);
             } else {
                 res.send(tweets);
@@ -64,7 +61,7 @@ exports.getUserTimeline = function(res, username, count) {
 };
 
 function filterFields(fromTweets, withFields, toResponse) {
-    if (withFields === undefined) {
+    if (withFields === undefined || withFields.length < 1) {
         toResponse.send(fromTweets['statuses'])
     } else {
         let FieldsToFilterArr = withFields.split(',');
