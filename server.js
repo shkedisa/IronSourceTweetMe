@@ -46,5 +46,5 @@ app.get('/userTimeline', function (req, res) {
 
 
 app.get('/', function (req, res) {
-    res.send('Welcome To TweetMe!\n See the docs in https://github.com/shkedisa/IronSourceTweetMe/blob/master/README.md');
+    res.send('<html><body><h1>Welcome To TweetMe!</h1><h3>See the docs in https://github.com/shkedisa/IronSourceTweetMe/blob/master/README.md</h3></body></html>');
 });
