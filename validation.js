@@ -4,7 +4,7 @@ exports.USERNAME = "Username";
 exports.INVALID_COUNT = "Count must be a positive number";
 
 exports.invalidString = function(str) {
-    return str + " must be a non empty string"
+    return str + " must be a non empty string";
 };
 
 exports.sendValidationError = function(toResponse, withErrorMessage) {
